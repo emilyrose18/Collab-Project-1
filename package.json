@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "tailwind": "npx tailwindcss -i ./Collab-Project-1/assets/css/styles.css -o ./Collab-Project-1/assets/css/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}
