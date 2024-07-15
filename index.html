@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Barfly's Corner</title>
   </head>
-  
+
+  <script>
+    function over21() {
+      var txt;
+      if (confirm("You have to be over 21 years old to enter this website")) {
+        // txt = "You pressed OK!";
+      } else {
+        location.replace("https://kids.nationalgeographic.com/");
+      }
+      // document.getElementById("demo").innerHTML = txt;
+    }
+
+    over21();
+  </script>
+
   <body>
     <header class="title">
-        <h1>Barfly's Corner</h1>
+      <h1>Barfly's Corner</h1>
     </header>
-  
-    <main>
-        <div class="search">
-          <h1>Search</h1>
-          <input id="names"/>
-          <button id="names_run">search</button>
 
-          <div id="searchlist">
-            
-          </div>
-        </div>
-        <div class="drinkCard"></div>
-        <div class="list" class="row" class="card"></div>
+    <main>
+      <div class="search">
+        <h1>Search</h1>
+        <input id="names" />
+        <button id="names_run">search</button>
+
+        <div id="searchlist"></div>
+      </div>
+      <div class="drinkCard"></div>
+      <div class="list" class="row" class="card"></div>
     </main>
 
+    <script src="./assets/js/over21.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
- 
