@@ -20,12 +20,22 @@ async function getcocktails(names) {
     const response = await fetch(url, options);
     const result = await response.json();
     console.log(result.drinks);
-    console.log(result.drinks[0].strDrink);
-    for (let i = 0; i < result.drinks.length; i++) {
-     let example = document.createElement("h3");
-      example.textContent = result.drinks[i].strDrink;
-      searchlistEl.appendChild(example);
-    }
+    // console.log(result.drinks[0].strDrink);
+    // for (let i = 0; i < result.drinks.length; i++) {
+    //  let example = document.createElement("h3");
+    //   example.textContent = result.drinks[i].strDrink;
+    //   searchlistEl.appendChild(example);
+    // }
+
+
+    result.drinks.forEach(element => {
+      console.log(element)
+      searchlistEl.innerHTML += `
+      <div class="card">
+      <h3>${result.drinks.strDrink}</h3>
+      <button class="hobby-button" id="${result.drinks.idDrink}">More Info</button>
+      `
+    });
   } catch (error) {
     console.error(error);
   }
@@ -38,3 +48,10 @@ buttonEl.addEventListener("click", function () {
 });
 
 // ====Left Search sidebar ends====
+
+
+// ===DrinkCard===
+function renderDrinkCard (){
+
+}
+// ===DrinkCard ends===
