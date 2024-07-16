@@ -28,14 +28,22 @@ async function getcocktails(names) {
     // }
 
 
-    result.drinks.forEach(element => {
-      console.log(element)
+    // result.drinks.forEach(element => {
+    //   console.log(element)
+    //   searchlistEl.innerHTML += `
+    //   <div class="card">
+    //   <h3>${result.drinks.strDrink}</h3>
+    //   <button class="hobby-button" id="${result.drinks.idDrink}">More Info</button>
+    //   `
+    // });
+
+    for (let i = 0; i < result.drinks.length; i++) {
       searchlistEl.innerHTML += `
       <div class="card">
-      <h3>${result.drinks.strDrink}</h3>
-      <button class="hobby-button" id="${result.drinks.idDrink}">More Info</button>
+      <h3>${result.drinks[i].strDrink}</h3>
+      <button class="hobby-button" id="${result.drinks[i].idDrink}">More Info</button>
       `
-    });
+    }
   } catch (error) {
     console.error(error);
   }
