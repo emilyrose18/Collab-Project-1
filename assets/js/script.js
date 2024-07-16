@@ -5,6 +5,7 @@ let inputEl = document.getElementById(`names`);
 let buttonEl = document.querySelector("#names_run");
 // console.log(buttonEl);
 let searchlistEl = document.getElementById(`searchlist`);
+let drinkCardEl = document.getElementById(`drinkCard`)
 
 async function getcocktails(names) {
   const url = "https://the-cocktail-db.p.rapidapi.com/search.php?s=" + names;
@@ -37,11 +38,18 @@ async function getcocktails(names) {
     //   `
     // });
 
+    // for (let i = 0; i < result.drinks.length; i++) {
+    //   searchlistEl.innerHTML += `
+    //   <div class="card">
+    //   <h3>${result.drinks[i].strDrink}</h3>
+    //   <button id="${result.drinks[i]}">More Info</button>
+    //   `
+    // }
     for (let i = 0; i < result.drinks.length; i++) {
       searchlistEl.innerHTML += `
       <div class="card">
       <h3>${result.drinks[i].strDrink}</h3>
-      <button class="hobby-button" id="${result.drinks[i].idDrink}">More Info</button>
+      <button onclick=renderDrinkCard(${result.drinks[i]})>More Info</button>
       `
     }
   } catch (error) {
@@ -59,7 +67,32 @@ buttonEl.addEventListener("click", function () {
 
 
 // ===DrinkCard===
-function renderDrinkCard (){
+function renderDrinkCard(${result.drinks[i]}){
+  drinkCardEl.innerHTML += `
+    <div class="card">
+    <h2>${result.drinks[i].strDrink}</h2>
+    <img src=y${result.drinks[i].strDrinkThumb} alt="${result.drinks[i].strDrink}">
+    <h2>Ingredient: 
+      ${result.drinks[i].strIngredient1} - ${result.drinks[i].strMeasure1}
+      ${result.drinks[i].strIngredient2} - ${result.drinks[i].strMeasure2}
+      ${result.drinks[i].strIngredient3} - ${result.drinks[i].strMeasure3}
+      ${result.drinks[i].strIngredient4} - ${result.drinks[i].strMeasure4}
+      ${result.drinks[i].strIngredient5} - ${result.drinks[i].strMeasure5}
+      ${result.drinks[i].strIngredient6} - ${result.drinks[i].strMeasure6}
+      ${result.drinks[i].strIngredient7} - ${result.drinks[i].strMeasure7}
+      ${result.drinks[i].strIngredient8} - ${result.drinks[i].strMeasure8}
+      ${result.drinks[i].strIngredient9} - ${result.drinks[i].strMeasure9}
+      ${result.drinks[i].strIngredient10} - ${result.drinks[i].strMeasure10}
+      ${result.drinks[i].strIngredient11} - ${result.drinks[i].strMeasure11}
+      ${result.drinks[i].strIngredient12} - ${result.drinks[i].strMeasure12}
+      ${result.drinks[i].strIngredient13} - ${result.drinks[i].strMeasure13}
+      ${result.drinks[i].strIngredient14} - ${result.drinks[i].strMeasure14}
+      ${result.drinks[i].strIngredient15} - ${result.drinks[i].strMeasure15}
+      </h2>
+    <h2>Served in: ${result.drinks[i].strGlass}</h2>
+    <h2>${result.drinks[i].strInstructions}</h2>
 
-}
+    <button onclick=renderDrinkCard(${result.drinks[i]})>More Info</button>
+  `
+};
 // ===DrinkCard ends===
