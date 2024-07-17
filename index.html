@@ -7,7 +7,7 @@
     <title>Barfly's Corner</title>
   </head>
 
-  <script>
+  <!--<script>
     function over21() {
       var txt;
       if (confirm("You have to be over 21 years old to enter this website")) {
@@ -16,26 +16,37 @@
         location.replace("https://kids.nationalgeographic.com/");
       }
       // document.getElementById("demo").innerHTML = txt;
-    }
+  }
 
     over21();
-  </script>
+  </script>-->
 
   <body>
-    <header class="title">
-      <h1 class="text-red-600">Barfly's Corner</h1>
+    <header class="head text-white bg-amber-800 text-center text-5xl p-4">
+      <h1>Barfly's Corner</h1>
     </header>
 
     <main>
-      <div class="search">
-        <h1>Search</h1>
-        <input id="names" />
-        <button id="names_run">search</button>
-
-        <div id="searchlist"></div>
+      <div 
+        class="search"
+        class="p-5 flex justify-between py-3 px-6"
+        <form action="">
+          <input type="text" name="search" placeholder="Search drinks" class="border-2 border-amber-800 p-2 m-2 rounded-2xl"
+        </form>
+        <button type="button" class="m-2 p-2 rounded-lg text-amber-700 bg-gray-200">Search</button>
       </div>
-      <div class="drinkCard"></div>
-      <div class="list" class="row" class="card"></div>
+       
+      <!--<h1>Search</h1>
+        <form action="">
+          <input type="text" id="names" class="px-3 font-semibold" />
+        </form>
+        <button id="names_run" class="m font-bold">search</button>-->
+      
+        <div class="grid grid-cols-3">
+      <div id="searchlist" class="m-2 border-2 h-12">Search Results</div>
+      <div id="drinkCard" class="m-2 border-2">Drinks Cards</div>
+      <div id="favorites" class="m-2 border-2">Favorites</div>
+      </div>
     </main>
 
     <!-- <script src="./assets/js/over21.js"></script> -->
