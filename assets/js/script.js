@@ -6,6 +6,8 @@ let buttonEl = document.querySelector("#names_run");
 // console.log(buttonEl);
 let searchlistEl = document.getElementById(`searchlist`);
 
+let drinkCardInfo = document.getElementById('drinkCard');
+
 async function getcocktails(names) {
   const url = "https://the-cocktail-db.p.rapidapi.com/search.php?s=" + names;
   const options = {
@@ -73,27 +75,39 @@ async function getcocktails(names) {
 }
 
 async function getMoreInfo(drinkId) {
-  const url = `https://the-cocktail-db.p.rapidapi.com/search.php?s=${drinkId}`
-  const options = {
-    method: "GET",
-    headers: {
-      "x-rapidapi-key": "ade2b8c4a4msh10cb24fb66e1426p1e4da1jsn789d10c245db",
-      "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
-    },
-  };
-  console.log(drinkId);
-  try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    console.log("this is the results", result);
-  }
+const url = 'https://the-cocktail-db.p.rapidapi.com/lookup.php?i=' + drinkId;
+const options = {
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': 'c826df9be6msh761406a549d7cfcp1723bbjsn6b3cf58dffd3',
+		'x-rapidapi-host': 'the-cocktail-db.p.rapidapi.com'
+	}
+};
 
-  // MAKE CALL TO GET MORE INFO
+try {
+	const response = await fetch(url, options);
+	const result = await response.json();
+	console.log(result.drinks[0].strDrinkThumb);
+  let drinkName = result.drinks[0].strDrink;
 
-  // POPULATE ELEMENT WITH THE RESULTS DATA
-  // REFERENCING ELEMENT BY ID
- catch (error) {
-  console.error(error);
+  drinkCardInfo.innerHTML = '';
+
+  let drinkNameDisplay = document.createElement('h3');
+  drinkNameDisplay.textContent = drinkName;
+
+ let drinkImage = document.createElement('img');
+  drinkImage.src = result.drinks[0].strDrinkThumb;
+
+
+
+
+
+
+  drinkCardInfo.appendChild(drinkNameDisplay);
+  drinkCardInfo.appendChild(drinkImage);
+  
+} catch (error) {
+	console.error(error); 
 }
 }
 
