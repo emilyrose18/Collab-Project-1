@@ -88,24 +88,55 @@ const options = {
 try {
 	const response = await fetch(url, options);
 	const result = await response.json();
-	console.log(result.drinks[0].strDrinkThumb);
-  let drinkName = result.drinks[0].strDrink;
 
+  let drink = result.drinks[0]
+
+  //clears out past drink card
   drinkCardInfo.innerHTML = '';
 
-  let drinkNameDisplay = document.createElement('h3');
+  //displays drink name
+  let drinkName = drink.strDrink;
+  let drinkNameDisplay = document.createElement('h2');
   drinkNameDisplay.textContent = drinkName;
+  drinkCardInfo.appendChild(drinkNameDisplay);
 
+  //displays drink image
  let drinkImage = document.createElement('img');
   drinkImage.src = result.drinks[0].strDrinkThumb;
-
-
-
-
-
-
-  drinkCardInfo.appendChild(drinkNameDisplay);
   drinkCardInfo.appendChild(drinkImage);
+
+  //gets an array of all the Ingredients keys in the drink object 
+  let ingredients = Object.keys(drink).filter(key =>
+  key.startsWith('strIngredient'));
+  //gets an array of all the Measurments keys in the drink object 
+  let measurments = Object.keys(drink).filter(key =>
+  key.startsWith('strMeasure'));
+
+  //Creates the ingredients title 
+  let ingredientsTitle = document.createElement('h3');
+  ingredientsTitle.textContent = 'Ingredients:';
+  drinkCardInfo.appendChild(ingredientsTitle);
+
+// iterates rthrogh the ingredients and measurments array 
+  for (let i = 0; i < ingredients.length; i++){
+
+    let ingredientNum = ingredients[i];
+    let ingredientValue = drink[ingredientNum];
+
+    let measurmentNum = measurments[i];
+    let measurmentValue = drink[measurmentNum];
+    // only displays if the value is not equal to null
+    if (ingredientValue != null) {
+    let ingredientsContent = document.createElement('li');
+    ingredientsContent.textContent = measurmentValue + ingredientValue;
+    drinkCardInfo.appendChild(ingredientsContent);
+    }
+  }
+  //Displays drinks instructions
+  let instructionsValue = drink.strInstructions
+  let instructions = document.createElement('h3');
+  instructions.textContent = `Instructions: ${instructionsValue}`;
+  drinkCardInfo.appendChild(instructions);
   
 } catch (error) {
 	console.error(error); 
