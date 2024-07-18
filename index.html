@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="./assets/images/cheers.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/output.css" />
     <title>Barfly's Corner</title>
@@ -22,30 +23,34 @@
   </script>-->
 
   <body>
-    <header class="head text-white bg-amber-800 text-center text-5xl p-4">
+    <header class="text-white bg-amber-800 text-center text-5xl p-4">
       <h1>Barfly's Corner</h1>
     </header>
 
     <main>
-      <div 
-        class="search"
-        class="p-5 flex justify-between py-3 px-6"
+      <div id="search" class="flex justify-items-start py-3 px-6 min-h">
         <form action="">
-          <input id="names" type="text" name="search" placeholder="Search drinks" class="border-2 border-amber-800 p-2 m-2 rounded-2xl"
+          <input
+            id="names"
+            type="text"
+            name="search"
+            placeholder="Search drinks"
+            class="border-2 border-amber-800 p-2 m-2 rounded-2xl"
+          />
         </form>
-        <button id="names_run" type="button" class="m-2 p-2 rounded-lg text-amber-700 bg-gray-200">Search</button>
+        <button
+          id="names_run"
+          type="button"
+          class="m-2 p-2 rounded-lg text-amber-700 bg-gray-200"
+        >
+          Search
+        </button>
       </div>
-       
-      <!--<h1>Search</h1>
-        <form action="">
-          <input type="text" id="names" class="px-3 font-semibold" />
-        </form>
-        <button id="names_run" class="m font-bold">search</button>-->
-      
-        <div class="grid grid-cols-3">
-      <div id="searchlist" class="m-2 border-2 h-12">Search Results</div>
-      <div id="drinkCard" class="m-2 border-2"> </div>
-      <div id="favorites" class="m-2 border-2">Favorites</div>
+
+      <div class="grid grid-cols-3 m-auto">
+        <div id="searchlist" class="m-2 border-2 p-2">Search Results</div>
+        <div id="drinkCard" class="m-2 border-2 p-2">Drink Cards</div>
+        <div id="favorites" class="m-2 border-2 p-2">Favorites</div>
       </div>
     </main>
 
