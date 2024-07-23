@@ -3,14 +3,8 @@ Barfly's Corner
 
 
 ## Description
-<b>sketch</b>
-
-![Screenshot](assets/images/screenshot00.png)
-
-
-
 ##
-![Screenshot](assets/images/screenshot2.png)
+![Screenshot](assets/images/screenshot01.png)
 
 This is a single-page application pulling data from 2 third-party server-side: [API Cocktail DB](https://rapidapi.com/thecocktaildb/api/the-cocktail-db) to provide a search for different alcoholic drinks as well as their ingredients and directions in making. 
 
