@@ -1,8 +1,15 @@
 {
+  "name": "collab-project-1",
+  "version": "1.0.0",
+  "description": "Barfly's Corner",
+  "main": "index.html",
   "scripts": {
-    "tailwind": "tailwindcss -i ./Collab-Project-1/assets/css/styles.css -o ./Collab-Project-1/assets/css/output.css --watch"
+    "tailwind": "tailwindcss -i ./assets/css/styles.css -o ./assets/css/output.css --watch"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.5"
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
