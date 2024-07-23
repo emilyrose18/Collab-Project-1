@@ -4,12 +4,12 @@ let inputEl = document.getElementById(`names`);
 // console.log(inputEl);
 let buttonEl = document.querySelector("#names_run");
 // console.log(buttonEl);
-let searchlistEl = document.getElementById(`searchlist`);
+let searchListEl = document.getElementById(`searchList`);
 
 let drinkCardInfo = document.getElementById("drinkCard");
 let favoritesInfo = document.getElementById("favorites");
 
-async function getcocktails(names) {
+async function getCocktails(names) {
   const url = "https://the-cocktail-db.p.rapidapi.com/search.php?s=" + names;
   const options = {
     method: "GET",
@@ -24,7 +24,7 @@ async function getcocktails(names) {
     const result = await response.json();
     const drinks = result.drinks;
 
-    searchlistEl.innerHTML = "";
+    searchListEl.innerHTML = "";
     console.log(result);
 
     /*
@@ -53,12 +53,14 @@ async function getcocktails(names) {
       console.log(drinkName);
 
       let cardDiv = document.createElement("div");
-      cardDiv.className = "card";
+      cardDiv.className = ("card p-1 font-sans");
 
       let drinkNameEl = document.createElement("h3");
+      drinkNameEl.className = ("bg-amber-700 text-white text-xl rounded-2xl p-1 m-1 uppercase text-bold");
       drinkNameEl.textContent = drinkName;
 
       let moreInfoButton = document.createElement("button");
+      moreInfoButton.className = ("bg-gray-200 rounded-xl m-1 p-1 hover:text-white hover:bg-amber-700 hover:shadow-xl");
       moreInfoButton.id = drinkId;
       moreInfoButton.textContent = "More Info";
       moreInfoButton.addEventListener("click", function () {
@@ -68,7 +70,7 @@ async function getcocktails(names) {
       cardDiv.appendChild(drinkNameEl);
       cardDiv.appendChild(moreInfoButton);
 
-      searchlistEl.appendChild(cardDiv);
+      searchListEl.appendChild(cardDiv);
     }
   } catch (error) {
     console.error(error);
@@ -78,7 +80,7 @@ async function getcocktails(names) {
 buttonEl.addEventListener("click", function () {
   console.log("button test");
   console.log(inputEl.value);
-  getcocktails(inputEl.value);
+  getCocktails(inputEl.value);
 });
 
 // ====Left Search sidebar ends====
@@ -101,35 +103,39 @@ async function getMoreInfo(drinkId) {
 
     let drink = result.drinks[0];
 
-    //clears out past drink card
+    // clears out past drink card
     drinkCardInfo.innerHTML = "";
 
-    //displays drink name
+    // displays drink name
     let drinkName = drink.strDrink;
     let drinkNameDisplay = document.createElement("h2");
+    drinkNameDisplay.className = ("font-bold m-1 p-2 uppercase text-center text-white text-2xl bg-amber-700 shadow-l rounded-2xl");
     drinkNameDisplay.textContent = drinkName;
     drinkCardInfo.appendChild(drinkNameDisplay);
 
-    //displays drink image
+    // displays drink image
     let drinkImage = document.createElement("img");
+    drinkImage.className = ("shadow-xl p-2");
     drinkImage.src = result.drinks[0].strDrinkThumb;
     drinkCardInfo.appendChild(drinkImage);
 
-    //gets an array of all the Ingredients keys in the drink object
+    // gets an array of all the ingredients keys in the drink object
     let ingredients = Object.keys(drink).filter((key) =>
       key.startsWith("strIngredient")
     );
-    //gets an array of all the Measurments keys in the drink object
+    
+    // gets an array of all the measurments keys in the drink object
     let measurments = Object.keys(drink).filter((key) =>
       key.startsWith("strMeasure")
     );
 
-    //Creates the ingredients title
+    // creates the ingredients title
     let ingredientsTitle = document.createElement("h3");
     ingredientsTitle.textContent = "Ingredients:";
+    ingredientsTitle.className = ("mt-2 p-2 font-sans font-semibold uppercase");
     drinkCardInfo.appendChild(ingredientsTitle);
 
-    // iterates rthrogh the ingredients and measurments array
+    // iterates through the ingredients and measurments array
     for (let i = 0; i < ingredients.length; i++) {
       let ingredientNum = ingredients[i];
       let ingredientValue = drink[ingredientNum];
@@ -139,27 +145,30 @@ async function getMoreInfo(drinkId) {
       // only displays if the value is not equal to null
       if (ingredientValue != null) {
         let ingredientsContent = document.createElement("li");
+        ingredientsContent.className = ("m-1 text-xs font-sans");
         ingredientsContent.textContent = measurmentValue + ingredientValue;
         drinkCardInfo.appendChild(ingredientsContent);
       }
     }
-    //Displays drinks instructions
+    // displays drinks instructions
     let instructionsValue = drink.strInstructions;
     let instructions = document.createElement("h3");
+    instructions.className = ("m-1 font-sans");
     instructions.textContent = `Instructions: ${instructionsValue}`;
     drinkCardInfo.appendChild(instructions);
 
-    // add button for adding to Favorites
+    // add button for adding to favorites
     let drinkId = drink.DrinkId;
     let strDrink = drink.strDrink;
-    let AddFavoritesButton = document.createElement("button");
-    AddFavoritesButton.id = drinkId;
-    AddFavoritesButton.textContent = "Add to Favorites";
-    AddFavoritesButton.addEventListener("click", function () {
-      AddFavorites(drinkId);
+    let addFavoritesButton = document.createElement("button");
+    addFavoritesButton.id = drinkId;
+    addFavoritesButton.className = ("m-2 p-2 text-center text-bold bg-gray-200 text-seriff rounded-xl hover:text-white hover:bg-amber-700");
+    addFavoritesButton.textContent = "Add to Favorites";
+    addFavoritesButton.addEventListener("click", function () {
+      addFavorites(drinkId);
     });
 
-    drinkCardInfo.appendChild(AddFavoritesButton);
+    drinkCardInfo.appendChild(addFavoritesButton);
   } catch (error) {
     console.error(error);
   }
@@ -168,7 +177,7 @@ async function getMoreInfo(drinkId) {
 // ===DrinkCard ends===
 
 // ===Favorites sidebar begins===
-async function AddFavorites(DrinkId) {
+async function addFavorites(DrinkId) {
   const url = "https://the-cocktail-db.p.rapidapi.com/lookup.php?i=" + DrinkId;
   const options = {
     method: "GET",
@@ -187,7 +196,7 @@ async function AddFavorites(DrinkId) {
       favId: value.drinkId,
     };
 
-    storeLocalStorage(FavoriteDrink);
+    storeLocalStorage(favoriteDrink);
 
   } catch (error) {
     console.error(error);
@@ -200,11 +209,11 @@ const storeLocalStorage = function (data) {
   newFavoriteDrink.push(data);
   console.log(allDrinks);
   const stringData = JSON.stringify(allDrinks);
-  localStorage.setItem("FavoriteDrinks", stringData);
+  localStorage.setItem("favoriteDrinks", stringData);
 };
 
 const readLocalStorage = function () {
-  const stringData = localStorage.getItem("FavoriteDrinks");
+  const stringData = localStorage.getItem("favoriteDrinks");
 
   const data = JSON.parse(stringData);
 
@@ -224,7 +233,7 @@ const renderFavoriteList = function () {
     return;
   }
 
-  for (let FavoriteDrink of FavoriteDrinks) {
+  for (let favoriteDrink of favoriteDrinks) {
     let favCard = document.createElement("h3");
     instructions.textContent = favName;
 
