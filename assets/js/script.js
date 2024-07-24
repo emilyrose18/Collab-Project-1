@@ -1,9 +1,7 @@
 // ====Left Search sidebar begin====
 
 let inputEl = document.getElementById(`names`);
-// console.log(inputEl);
 let buttonEl = document.querySelector("#names_run");
-// console.log(buttonEl);
 let searchListEl = document.getElementById(`searchList`);
 
 let drinkCardInfo = document.getElementById("drinkCard");
@@ -26,25 +24,6 @@ async function getCocktails(names) {
 
     searchListEl.innerHTML = "";
     console.log(result);
-
-    /*
-    console.log(result.drinks);
-    console.log(result.drinks[0].strDrink);
-     for (let i = 0; i < result.drinks.length; i++) {
-      let example = document.createElement("h3");
-       example.textContent = result.drinks[i].strDrink;
-       searchlistEl.appendChild(example);
-     }
-
-
-     result.drinks.forEach(element => {
-       console.log(element)
-       searchlistEl.innerHTML += `
-       <div class="card">
-       <h3>${result.drinks.strDrink}</h3>
-       <button class="hobby-button" id="${result.drinks.idDrink}">More Info</button>
-     });
-     */
 
     for (let i = 0; i < drinks.length; i++) {
       let drinkId = drinks[i].idDrink;
