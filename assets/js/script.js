@@ -77,6 +77,12 @@ async function getCocktails(names) {
   }
 }
 
+searchListEl.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    console.log(inputEl.value);
+    getCocktails(inputEl.value);}
+});
+
 buttonEl.addEventListener("click", function () {
   console.log("button test");
   console.log(inputEl.value);
